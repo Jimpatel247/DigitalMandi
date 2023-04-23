@@ -21,7 +21,7 @@ export const CurrentBidCard = (props) => {
     console.log(crop._id);
     console.log(value);
     const price = value;
-    const response = await fetch(`/api/buy/merchant/highbid/${crop._id}`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/highbid/${crop._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const CurrentBidCard = (props) => {
   };
 
   const higheat =async ()=> {
-    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
+    const resp= await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
     method: "GET",
     
   });

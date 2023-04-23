@@ -23,11 +23,11 @@ export const SignUpForm = () => {
     e.preventDefault();
 
     const { name, email, phoneNumber, password, role } = user;
-    let fetchUrl = "/api/farmer/fsignup";
+    let fetchUrl = `${process.env.BACKEND_URL}/api/farmer/fsignup`;
     if (role === "farmer") {
-      fetchUrl = "/api/farmer/fsignup";
+      fetchUrl = `${process.env.BACKEND_URL}/api/farmer/fsignup`;
     } else if (role === "merchant") {
-      fetchUrl = "/api/merchant/msignup";
+      fetchUrl = `${process.env.BACKEND_URL}/api/merchant/msignup`;
     }
     const res = await fetch(fetchUrl, {
       method: "POST",
