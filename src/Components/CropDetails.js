@@ -14,7 +14,7 @@ const Noteitem = (props) => {
   const [high, setHigh] = useState("");
   let date = crop.date;
   const higheat =async ()=> {
-    const resp= await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
+    const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
     method: "GET",
     
   });

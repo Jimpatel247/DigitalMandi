@@ -20,7 +20,7 @@ export const MLoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const { email, password } = user;
-    const res = await fetch(`${process.env.BACKEND_URL}/api/merchant/mlogin`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/merchant/mlogin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

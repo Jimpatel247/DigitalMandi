@@ -18,7 +18,7 @@ export const FarmerDash = (props) => {
   };
 console.log(crop.merchant)
   const Detail =async ()=> {
-    const resp= await fetch(`${process.env.BACKEND_URL}/api/sell/farmer/mname/${crop.merchant}`, {
+    const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/sell/farmer/mname/${crop.merchant}`, {
     method: "GET",
     
   });

@@ -23,7 +23,7 @@ export const MSignUpForm = () => {
     e.preventDefault();
 
     const { name, email, phoneNumber, password } = user;
-    const res = await fetch(`${process.env.BACKEND_URL}/api/merchant/msignup`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/merchant/msignup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
