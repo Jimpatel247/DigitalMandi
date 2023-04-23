@@ -19,7 +19,7 @@ const NoteState = (props) => {
   //Get All current crops
   const getCrops = async () => {
     //API
-    const response = await fetch("/api/sell/farmer/current", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/sell/farmer/current`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const NoteState = (props) => {
 
   const getforbidCrops = async () => {
     //API
-    const response = await fetch("/api/sell/farmer/forbid", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/sell/farmer/forbid`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const NoteState = (props) => {
   const getFdash = async () => {
     //API
 
-    const response = await fetch("/api/sell/farmer/dashboard", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/sell/farmer/dashboard`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const NoteState = (props) => {
 
   //Add New Note
   const addCrop = async (name, address, plotno, weight, market, image) => {
-    let url = "http://localhost:3000/api/sell/farmer/addcrop";
+    let url = `${process.env.BACKEND_URL}/api/sell/farmer/addcrop`;
     //API
     console.log(image, "nameeee:", image.name);
     const formdata = new FormData();
@@ -131,7 +131,7 @@ const NoteState = (props) => {
   };
   const getlistMarket = async (market) => {
     //API
-    const response = await fetch("/api/buy/merchant/list", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/list`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -163,7 +163,7 @@ const NoteState = (props) => {
   } */
   const getmCurrent = async () => {
     //API
-    const response = await fetch("/api/buy/merchant/current", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/current`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -179,7 +179,7 @@ const NoteState = (props) => {
   //Delete Note
   const deleteCrop = async (id) => {
     if (window.confirm("Are you Sure You Want to Delete")) {
-      const response = await fetch(`/api/sell/farmer/deletecrop/${id}`, {
+      const response = await fetch(`${process.env.BACKEND_URL}/api/sell/farmer/deletecrop/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -202,7 +202,7 @@ const NoteState = (props) => {
   const getMdash = async () => {
     //API
 
-    const response = await fetch("/api/buy/merchant/dashboard", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/buy/merchant/dashboard`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -218,7 +218,7 @@ const NoteState = (props) => {
   //Update
   const editCrop = (id, name, address, plotno, weight, market) => {
     //API
-    const response = fetch(`/api/sell/farmer/updatecrop/${id}`, {
+    const response = fetch(`${process.env.BACKEND_URL}/api/sell/farmer/updatecrop/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
