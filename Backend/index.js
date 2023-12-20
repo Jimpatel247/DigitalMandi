@@ -5,7 +5,8 @@ const farmerRoute = require("./routes/Farmer");
 const merchantRoute = require("./routes/Merchant");
 const cropfarmerRoute =require("./routes/Cropfarmer");
 const cropmerchantRoute =require("./routes/Cropmerchant");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const test=require("./routes/test");
 
 const cors=require("cors");
 
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
   res.send('Hello World from jim!')
 })
 //Available Routes
+app.use("/test",test);
 app.use("/api/farmer", farmerRoute);
 app.use("/api/merchant", merchantRoute);
 app.use("/api/sell/farmer", cropfarmerRoute);
