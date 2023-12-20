@@ -37,7 +37,7 @@ higheat();
           <a className="postcard__img_link" href="#">
             <img
               className="postcard__img"
-              src={`/${crop.image}`}
+              src={`http://localhost:8000/${crop.image}`}
               alt="Image Title"
             />
           </a>

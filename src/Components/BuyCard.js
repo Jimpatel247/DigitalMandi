@@ -73,7 +73,7 @@ console.log(high);
           <a class="postcard__img_link" href="#">
             <img
               class="postcard__img"
-              src={`/${crop.image}`}
+              src={`http://localhost:8000/${crop.image}`}
               alt="Crop Image"
             />
           </a>
