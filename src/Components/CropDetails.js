@@ -14,7 +14,7 @@ const Noteitem = (props) => {
   const [high, setHigh] = useState("");
   let date = crop.date;
   const higheat =async ()=> {
-    const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
+    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
     method: "GET",
     
   });
@@ -37,7 +37,7 @@ higheat();
           <a className="postcard__img_link" href="#">
             <img
               className="postcard__img"
-              src={`http://localhost:8000/${crop.image}`}
+              src={`/${crop.image}`}
               alt="Image Title"
             />
           </a>

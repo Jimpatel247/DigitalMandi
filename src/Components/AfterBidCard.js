@@ -16,7 +16,7 @@ const AfterBidCard = (props) => {
    console.log(crop._id); 
   const idd=crop._id;
     const higheat =async ()=> {
-      const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
+      const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
       method: "GET",
       
     });
@@ -33,7 +33,7 @@ const AfterBidCard = (props) => {
   };
   higheat();
   const Detail =async ()=> {
-    const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/sell/farmer/mname/${crop.merchant}`, {
+    const resp= await fetch(`/api/sell/farmer/mname/${crop.merchant}`, {
     method: "GET",
     
   });
@@ -51,7 +51,7 @@ setNumber(rate.phoneno)
 Detail();
 
   const handledealClick = async ()=>{
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/sell/farmer/confirm/${idd}`, {
+    const response = await fetch(`/api/sell/farmer/confirm/${idd}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ Detail();
           <a class="postcard__img_link" href="#">
             <img
               class="postcard__img"
-              src={`http://localhost:8000/${crop.image}`}
+              src={`/${crop.image}`}
               alt="Image Title"
             />
           </a>

@@ -23,11 +23,11 @@ export const SignUpForm = () => {
     e.preventDefault();
 
     const { name, email, phoneNumber, password, role } = user;
-    let fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/farmer/fsignup`;
+    let fetchUrl = `/api/farmer/fsignup`;
     if (role === "farmer") {
-      fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/farmer/fsignup`;
+      fetchUrl = `/api/farmer/fsignup`;
     } else if (role === "merchant") {
-      fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/merchant/msignup`;
+      fetchUrl = `/api/merchant/msignup`;
     }
     const res = await fetch(fetchUrl, {
       method: "POST",

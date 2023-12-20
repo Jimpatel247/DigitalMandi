@@ -20,11 +20,11 @@ export const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const { email, password ,role} = user;
-    let fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/farmer/flogin`;
+    let fetchUrl = `/api/farmer/flogin`;
     if (role === "farmer") {
-      fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/farmer/flogin`;
+      fetchUrl = `/api/farmer/flogin`;
     } else if (role === "merchant") {
-      fetchUrl = `${process.env.REACT_APP_BACKEND_URL}/api/merchant/mlogin`;
+      fetchUrl = `/api/merchant/mlogin`;
     }
     const res = await fetch(fetchUrl, {
       method: "POST",
