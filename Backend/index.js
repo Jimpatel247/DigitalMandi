@@ -7,13 +7,14 @@ const cropfarmerRoute =require("./routes/Cropfarmer");
 const cropmerchantRoute =require("./routes/Cropmerchant");
 const bodyParser = require("body-parser")
 
-
+const cors=require("cors");
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 app.use('/images',express.static('images'))
 app.use(express.json());
 //Available Routes
