@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/images',express.static('images'))
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('Hello World from jim!')
+})
 //Available Routes
 app.use("/api/farmer", farmerRoute);
 app.use("/api/merchant", merchantRoute);
