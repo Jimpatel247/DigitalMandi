@@ -104,7 +104,6 @@ const NoteState = (props) => {
         "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MGJhYmVkOGIyOGE5MzYzOWFjNDBhIn0sImlhdCI6MTY0ODc5NDM2NX0.qp7L1j6kSKa03_bqpbicP92AM9T4FIbpjcgn1TBy88o"
           
       },
-
        // body data type must match "Content-Type" header
     });
     const crop= await response.json(); // parses JSON response into native JavaScript objects
