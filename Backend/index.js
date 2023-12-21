@@ -25,23 +25,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/images',express.static('images'));
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,Market,market, Accept, Authorization, Auth, auth');
-
-//   // Allow preflight requests to proceed
-//   if (req.method === 'OPTIONS') {
-//     res.sendStatus(200);
-//   } else {
-//     next();
-//   }
-// });
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//   res.header("Access-Control-Allow-Headers", "*");
-//   next();
-// });
 app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World from jim!')
