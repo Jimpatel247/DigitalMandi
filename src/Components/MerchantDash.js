@@ -22,7 +22,7 @@ export const MerchantDash = (props) => {
             <a class="postcard__img_link" href="#">
               <img
                 class="postcard__img"
-                src={`/${crop.image}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}/images/1703063111594.jpg`}
                 alt="Crop Image"
               />
             </a>
