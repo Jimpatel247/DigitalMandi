@@ -2,7 +2,7 @@
   "name": "digitalmandi",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://digital-mandi-backend.vercel.app",
+  "proxy":"http://localhost:8000",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

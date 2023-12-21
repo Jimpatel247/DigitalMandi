@@ -20,7 +20,7 @@ const BuyCard = (props) => {
     console.log(crop._id);
     console.log(value);
     const price = value;
-    const response = await fetch(`/api/buy/merchant/list/${crop._id}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buy/merchant/list/${crop._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const BuyCard = (props) => {
   };
 
   const higheat =async ()=> {
-    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
+    const resp= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buy/merchant/highestprice/${crop._id}`, {
     method: "GET",
     
   });
