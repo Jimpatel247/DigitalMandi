@@ -8,14 +8,23 @@ const cropmerchantRoute =require("./routes/Cropmerchant");
 const bodyParser = require("body-parser");
 const test=require("./routes/test");
 
-const cors=require("cors");
+const cors = require('cors');    
+const corsOpts = {
+    origin: '*',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Type']
+};
+
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
+app.use(cors(corsOpts));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+
 app.use('/images',express.static('images'))
 app.use(express.json());
 app.get('/', (req, res) => {
