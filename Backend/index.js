@@ -9,20 +9,20 @@ const bodyParser = require("body-parser");
 const test=require("./routes/test");
 
 const cors = require('cors');    
-const corsOpts = {
-    origin: '*',
-    credentials: true,
-    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-    allowedHeaders: ['Content-Type'],
-    exposedHeaders: ['Content-Type']
-};
+// const corsOpts = {
+//     origin: '*',
+//     credentials: true,
+//     methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+//     allowedHeaders: ['Content-Type'],
+//     exposedHeaders: ['Content-Type']
+// };
 
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
-app.use(cors(corsOpts));
+// app.use(cors(corsOpts));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/images',express.static('images'));
