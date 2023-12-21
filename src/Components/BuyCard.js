@@ -73,7 +73,7 @@ console.log(high);
           <a class="postcard__img_link" href="#">
             <img
               class="postcard__img"
-              src={`http://localhost:8000/${crop.image}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/${crop.image}`}
               alt="Crop Image"
             />
           </a>
