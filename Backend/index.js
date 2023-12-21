@@ -9,30 +9,30 @@ const bodyParser = require("body-parser");
 const test=require("./routes/test");
 
 const cors = require('cors');    
-// const corsOpts = {
-//     origin: '*',
-//     credentials: true,
-//     methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-//     allowedHeaders: ['Content-Type'],
-//     exposedHeaders: ['Content-Type']
-// };
+const corsOpts = {
+    origin: '*',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Type']
+};
 
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
-// app.use(cors(corsOpts));
+app.use(cors(corsOpts));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/images',express.static('images'));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST,PUT, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST,PUT, OPTIONS');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World from jim!')
