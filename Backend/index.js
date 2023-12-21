@@ -9,28 +9,37 @@ const bodyParser = require("body-parser");
 const test=require("./routes/test");
 
 const cors = require('cors');    
-const corsOpts = {
-    origin: '*',
-    credentials: true,
-    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-    allowedHeaders: ['Content-Type'],
-    exposedHeaders: ['Content-Type']
-};
-
+// const corsOpts = {
+//     origin: '*',
+//     credentials: true,
+//     methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+//     allowedHeaders: ['Content-Type'],
+//     exposedHeaders: ['Content-Type']
+// };
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
-app.use(cors(corsOpts));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/images',express.static('images'));
 // app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST,PUT, OPTIONS');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,Market,market, Accept, Authorization, Auth, auth');
+
+//   // Allow preflight requests to proceed
+//   if (req.method === 'OPTIONS') {
+//     res.sendStatus(200);
+//   } else {
+//     next();
+//   }
+// });
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+//   res.header("Access-Control-Allow-Headers", "*");
 //   next();
 // });
 app.use(express.json());
