@@ -69,7 +69,7 @@ higheat();
             <a class="postcard__img_link" href="#">
               <img
                 class="postcard__img"
-                src={`${process.env.REACT_APP_BACKEND_URL}/${crop.image}`}
+                src={`${crop.image}`}
                 alt="Crop Image"
               />
             </a>

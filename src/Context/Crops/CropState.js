@@ -68,9 +68,9 @@ const NoteState = (props) => {
   const addCrop = async (name, address, plotno, weight, market, image) => {
     let url = `${process.env.REACT_APP_BACKEND_URL}/api/sell/farmer/addcrop`;
     //API
-    console.log(image, "nameeee:", image.name);
+    console.log(image, "nameeee:");
     const formdata = new FormData();
-    formdata.append("image", image, image.name);
+    formdata.append("image", image);
     formdata.append("cropName", name);
     formdata.append("address", address);
     formdata.append("market", market);
@@ -194,8 +194,16 @@ const NoteState = (props) => {
         return note._id !== id;
       });
       setCrops(newCrop);
-      // window.alert("Crop Deleted Successfull");
+      if(response.status==200){
+      window.alert("Crop Deleted Successfull");
       window.location.reload();
+      // history.push("/addcrop");
+      // getCrops();
+    }
+      else{
+        window.alert("Not deleted Try Again");
+      }
+      // window.location.reload();
     }
   };
   const getMdash = async () => {
@@ -215,7 +223,7 @@ const NoteState = (props) => {
     setmdashCrops(json);
   };
   //Update
-  const editCrop = (id, name, address, plotno, weight, market) => {
+  const editCrop = (id, cropName, address, plotno, weight, market) => {
     //API
     const response = fetch(`${process.env.REACT_APP_BACKEND_URL}/api/sell/farmer/updatecrop/${id}`, {
       method: "PUT",
@@ -224,20 +232,27 @@ const NoteState = (props) => {
         auth: localStorage.getItem("token"),
       },
 
-      body: JSON.stringify(name, address, plotno, weight, market), // body data type must match "Content-Type" header
+      body: JSON.stringify(cropName, address, plotno, weight, market), // body data type must match "Content-Type" header
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
-
-    for (let index = 0; index < crops.length; index++) {
-      const element = crops[index];
-      if (element._id === id) {
-        element.name = name;
-        element.address = address;
-        element.plotno = plotno;
-        element.weight = weight;
-        element.market = market;
-      }
+    if(response.status==200){
+      window.alert("updated");
+      window.location.reload();
     }
+    else{
+      window.alert("not updated try again");
+
+    }
+    // for (let index = 0; index < crops.length; index++) {
+    //   const element = crops[index];
+    //   if (element._id === id) {
+    //     element.cropName = cropName;
+    //     element.address = address;
+    //     element.plotno = plotno;
+    //     element.weight = weight;
+    //     element.market = market;
+    //   }
+    // }
 
     // ALL Merchant api calls.
   };

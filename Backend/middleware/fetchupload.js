@@ -2,6 +2,19 @@ var jwt = require('jsonwebtoken');
 const Farmer = require("../Models/FarmerSchema");
 const path= require('path');
 const multer=require('multer');
+const { ClassNames } = require('@emotion/react');
+const {
+    S3,
+} = require("@aws-sdk/client-s3");
+const multerS3 = require("multer-s3");
+const s3=new S3({
+    credentials: {
+        accessKeyId:process.env.S3_ACCESS_KEY,
+        secretAccessKey:process.env.S3_SECRET_ACCESS_KEY,
+    },
+
+    region:process.env.S3_BUCKET_REGION,
+});
 
 const fetchfarmer = async (req, res, next) => {
     // Get the user from the jwt token and add id to req object
@@ -32,7 +45,7 @@ const fetchfarmer = async (req, res, next) => {
     }
 
 }
-var storage = multer.diskStorage({
+/* var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'images/')
     },
@@ -40,21 +53,20 @@ var storage = multer.diskStorage({
         let ext =  path.extname(file.originalname)
         cb(null,Date.now()+ext)
     }
-})
+}) */
 
-var upload =multer({
-    storage:storage,
-    /* filefilter :function(req,file,callback){
-        if(
-            file.mimetype == "image/png" ||
-            file.mimetype == "image/jpg"
-        ){
-            callback(null,true)
-        }else{
-            res.status(401).send({ error: "Please upload jpg or png file" })
-            callback(null,false)
+var upload = (bucketName)=> multer({
+    storage:multerS3({
+        s3:s3,
+        bucket:bucketName,
+        metadata:function(req,file,cb){
+            cb(null,{fieldName:file.fieldname});
+        },
+        key:function(req,file,cb){
+            cb(null,`image-${Date.now()}.jpeg`);
         }
-    }, */
+    }),
+ 
     fileFilter: (req, file, cb) => {
         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
           cb(null, true);
@@ -68,5 +80,24 @@ var upload =multer({
     limits : {fileSize : 2090000}
 })
 
-const fetchupload={fetchfarmer,upload}
+var uploadCrop = (req, res, next) => {
+    console.log("here")
+    const uploadSingle = upload("digitalmandi").single(
+      "image"
+    );
+  
+    uploadSingle(req, res, async (err) => {
+      if (err)
+        return res.status(400).json({ success: n, message: err.message });
+      else{
+        // console.log("inside upload",req.file.location) 
+        req.image = req.file.location
+        next();
+      }
+        
+    //   res.status(200).json({ data: req.file.location });
+    });
+  };
+
+const fetchupload={fetchfarmer,uploadCrop}
 module.exports = fetchupload;

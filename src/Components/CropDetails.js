@@ -37,7 +37,7 @@ higheat();
           <a className="postcard__img_link" href="#">
             <img
               className="postcard__img"
-              src={`${process.env.REACT_APP_BACKEND_URL}/${crop.image}`}
+              src={`${crop.image}`}
               alt="Image Title"
             />
           </a>
@@ -66,14 +66,14 @@ higheat();
               <p>Highest-bid:{high}</p>
             </div>
             <div className="btn-group">
-              <button
+              {/* <button
                 variant="primary"
                 onClick={handleShow}
                 className="btn btn-primary"
               >
                 <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <span className="mx-2">Update</span>
-              </button>
+              </button> */}
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Crop Details</Modal.Title>
@@ -166,7 +166,10 @@ higheat();
                   </Button>
                   <Button
                     variant="primary"
-                    
+                    onClick={() => {
+                      console.log("sab changa si")
+                      editCrop(crop._id);
+                    }}
                   >
                     Update Details
                   </Button>

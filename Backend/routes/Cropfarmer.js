@@ -10,14 +10,14 @@ const MerchantSchema =require("../Models/MerchantSchema")
 
 router.post(
   "/addcrop",
-  [fetchupload.fetchfarmer, fetchupload.upload.single("image")],
-  [
-    body("cropName", "Enter a valid title").isLength({ min: 2 }),
-    body("address", "Address must be atleast 5 characters").isLength({
-      min: 5,
-    }),
-    body("market", "Enter a valid market").isLength({ min: 2 }),
-  ],
+  [fetchupload.fetchfarmer, fetchupload.uploadCrop],
+  // [
+  //   body("cropName", "Enter a valid title").isLength({ min: 2 }),
+  //   body("address", "Address must be atleast 5 characters").isLength({
+  //     min: 5,
+  //   }),
+  //   body("market", "Enter a valid market").isLength({ min: 2 }),
+  // ],
   async (req, res) => {
     let success = false;
     try {
@@ -37,9 +37,10 @@ router.post(
         weight,
         user: req.user.id,
       });
-      if (req.file) {
-        crop.image = req.file.path;
+      if (req.image) {
+        crop.image = req.image;
         console.log("image received");
+        console.log(req.image);
       }
       console.log("Crop detail received Successful");
       const savedNote = await crop.save();
@@ -153,10 +154,10 @@ router.delete("/deletecrop/:id", fetchfarmer, async (req, res) => {
       success = false;
       return res.status(404).send("Crop Not Found");
     }
-    if (crop.user.toString() !== req.user.id) {
-      success = false;
-      return res.status(401).send("Not Allowed to Delete");
-    }
+    // if (crop.user.toString() !== req.user.id) {
+    //   success = false;
+    //   return res.status(401).send("Not Allowed to Delete");
+    // }
     crop = await CropSchema.findByIdAndDelete(req.params.id);
     success = true;
     res.json({ Success: "Crop has been Deleted Successfully", crop: crop });
@@ -168,12 +169,12 @@ router.delete("/deletecrop/:id", fetchfarmer, async (req, res) => {
 });
 //Route-6  EditCrop
 router.put("/updatecrop/:id", fetchfarmer, async (req, res) => {
-  const { name, address, plotno, weight, market } = req.body;
+  const { cropName, address, plotno, weight, market } = req.body;
   try {
     // Create New Note
     const newCrop = {};
-    if (name) {
-      newCrop.name = name;
+    if (cropName) {
+      newCrop.cropName = cropName;
     }
     if (address) {
       newCrop.address = address;
