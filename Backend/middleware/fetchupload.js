@@ -15,6 +15,7 @@ const s3=new S3({
 
     region:process.env.S3_BUCKET_REGION,
 });
+const bucketName=process.env.S3_BUCKET_NAME;
 
 const fetchfarmer = async (req, res, next) => {
     // Get the user from the jwt token and add id to req object
@@ -82,7 +83,7 @@ var upload = (bucketName)=> multer({
 
 var uploadCrop = (req, res, next) => {
     console.log("here")
-    const uploadSingle = upload("digitalmandi").single(
+    const uploadSingle = upload(`${bucketName}`).single(
       "image"
     );
   
